@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
 number = 98
-str = "Battery street"
+str1 = "Battery street"
 
-print(number, str)
+print(number, str1)
