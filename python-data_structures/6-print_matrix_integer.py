@@ -1,4 +1,5 @@
 #!/usr/bin/python3
 def print_matrix_integer(matrix=[[]]):
      for i in matrix:
-        print(*i)  
+        str1 = ' '.join([str(n) for n in i])
+        print(str1)
