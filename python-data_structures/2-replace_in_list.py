@@ -2,7 +2,7 @@
 def replace_in_list(my_list, idx, element):
     if idx < 0:
         return
-    elif idx > len(my_list):
+    elif idx >= len(my_list):
         return
     else:
         for i in range(len(my_list)):
@@ -11,5 +11,3 @@ def replace_in_list(my_list, idx, element):
                 my_list[i] = element
                 element = newlist
                 return my_list
-
-
