@@ -5,9 +5,9 @@ def replace_in_list(my_list, idx, element):
     elif idx >= len(my_list):
         return
     else:
-        for i in range(len(my_list)):
-            if i == idx:
-                newlists = my_list[i]
-                my_list[i] = element
-                element = newlists
+        for n in range(len(my_list)):
+            if n == idx:
+                newlist = my_list[n]
+                my_list[n] = element
+                element = newlist
                 return my_list
