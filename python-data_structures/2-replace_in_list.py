@@ -7,7 +7,7 @@ def replace_in_list(my_list, idx, element):
     else:
         for i in range(len(my_list)):
             if i == idx:
-                newlist = my_list[i]
+                newlists = my_list[i]
                 my_list[i] = element
-                element = newlist
+                element = newlists
                 return my_list
