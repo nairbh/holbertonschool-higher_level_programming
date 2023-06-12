@@ -7,6 +7,9 @@ class Square:
 
     def __init__(self, size=0):
         self.__size = size
+
+        '''python3 -c 'print(__import__("my_module").my_function.__doc__)'''
+
         try:
             if not isinstance(self.__size, int):
 
