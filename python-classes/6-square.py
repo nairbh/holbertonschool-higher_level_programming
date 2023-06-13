@@ -7,10 +7,8 @@ class Square:
     """Define a Square"""
 
     def __init__(self, size=0, position=(0, 0)):
-
         '''Instantiation with optional size'''
-
-        self.__size = size
+        self.size = size
         self.position = position
 
     @property
@@ -22,13 +20,9 @@ class Square:
     def size(self, value):
         '''setter def size'''
         if not isinstance(value, int):
-
             raise TypeError('size must be an integer')
-
         if value < 0:
-
             raise ValueError('size must be >= 0')
-
         self.__size = value
 
     @property
@@ -38,9 +32,9 @@ class Square:
     @position.setter
     def position(self, value):
         if type(value) != tuple or len(value) != 2:
-
             raise TypeError('position must be a tuple of 2 positive integers')
-
+        if not all(isinstance(num, int) and num >= 0 for num in value):
+            raise ValueError('position must be a tuple of 2 positive integers')
         self.__position = value
 
     def area(self):
@@ -49,13 +43,14 @@ class Square:
 
     def my_print(self):
         if self.size == 0:
-            print("")
+            print()
         else:
-            for i in range(self.position[1]):
+            for _ in range(self.__position[1]):
                 print()
-            for i in range(0, self.size):
-                for x in range(self.position[0]):
-                    print("_", end="")
-                for j in range(self.size):
-                    print("#", end='')
+            for _ in range(self.__size):
+                for _ in range(self.__position[0]):
+                    print(" ", end="")
+                for _ in range(self.__size):
+                    print("#", end="")
                 print()
+
