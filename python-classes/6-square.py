@@ -11,6 +11,7 @@ class Square:
         '''Instantiation with optional size'''
 
         self.__size = size
+        self.position = position
 
     @property
     def size(self):
@@ -48,15 +49,14 @@ class Square:
 
     def my_print(self):
         '''prints in stdout the square'''
-
         if self.size == 0:
-
             print()
         else:
-
-            for i in range(self.position[1]):
+            for _ in range(self.position[1]):
                 print()
-                for y in range(self.size):
-                    print("{}".format("#"), end="")
-                print("")
-
+            for _ in range(self.size):
+                for _ in range(self.position[0]):
+                    print(" ", end="")
+                for _ in range(self.size):
+                    print("#", end="")
+                print()
