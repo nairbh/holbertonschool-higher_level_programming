@@ -1,15 +1,15 @@
 #!/usr/bin/python3
-
 '''defines a square'''
 
 
 class Square:
 
-     """Define a Square"""
-
+    """Define a Square"""
 
     def __init__(self, size=0):
+
         '''Instantiation with optional size'''
+
         self.__size = size
 
     def area(self):
