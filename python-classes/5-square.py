@@ -2,15 +2,15 @@
 
 '''defines a square'''
 
-class Square:
 
+class Square:
     def __init__(self, size=0):
         self.__size = size
 
     def area(self):
         '''returns the current square area'''
         return self.__size * self.__size
-    
+
     @property
     def size(self):
         '''property def size'''
@@ -20,15 +20,15 @@ class Square:
     def size(self, value):
         '''setter def size'''
         if not isinstance(value, int):
-            
+
             raise TypeError('size must be an integer')
-        
+
         if value < 0:
 
             raise ValueError('size must be >= 0')
 
         self.__size = value
-    
+
     def my_print(self):
         '''prints in stdout the square'''
 
