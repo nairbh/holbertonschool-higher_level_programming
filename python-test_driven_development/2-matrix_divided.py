@@ -12,9 +12,9 @@
 def matrix_divided(matrix, div):
     """ Divides a matrix and returns a new matrix """
     if not isinstance(matrix, list) or \
-    any(not isinstance(row, list) for row in matrix):
-        raise TypeError\
-    ('matrix must be a matrix(list of lists) of integers/floats')
+            any(not isinstance(row, list) for row in matrix):
+        raise TypeError('matrix must be a m\
+                atrix(list of lists) of integers/floats')
 
     row_lenght = len(matrix[0])
 
