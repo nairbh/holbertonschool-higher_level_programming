@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 """ print a text """
+
+
 def text_indentation(text):
     """ print a text whitout punctionation """
     if not isinstance(text, str):
