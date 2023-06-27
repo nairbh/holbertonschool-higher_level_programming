@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 """ 1-main """
-
-
 from models.base import Base
 
 
