@@ -80,3 +80,10 @@ class Rectangle(Base):
         """ display def """
         for _ in range(self.height):
             print("#" * self.width)
+
+    def __str__(self):
+        """ str def """
+        message = (
+            f"[Rectangle] ({self.id}) "
+            f"{self.x}/{self.y} - {self.width}/{self.height}").strip()
+        return message
