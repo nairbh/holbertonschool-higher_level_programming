@@ -87,3 +87,10 @@ class Rectangle(Base):
             f"[Rectangle] ({self.id}) "
             f"{self.x}/{self.y} - {self.width}/{self.height}").strip()
         return message
+
+    def display(self):
+        """ display def"""
+        for _ in range(self.y):
+            print()
+        for _ in range(self.height):
+            print(self.__x * " " + "#" * self.__width)
