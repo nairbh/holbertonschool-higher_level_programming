@@ -35,3 +35,11 @@ class Base:
                 list_of_obj.append(obj.to_dictionary())
         with open(filename, "w", encoding="UTF-8") as file:
             file.write(cls.to_json_string(list_of_obj))
+
+    @staticmethod
+    def from_json_string(json_string):
+        """ from json """
+        if json_string is None or json_string == "":
+            return []
+        else:
+            return json.loads(json_string)
