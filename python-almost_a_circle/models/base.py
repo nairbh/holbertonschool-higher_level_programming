@@ -61,10 +61,15 @@ class Base:
     def load_from_file(cls):
         """load from file"""
         filename = cls.__name__ + ".json"
-        class_name = []
-        with open(filename, "r") as read_file:
-            file = read_file.read()
-            _list = cls.from_json_string(file)
-            for i in _list:
-                class_name.append(cls.create(**i))
-            return class_name
+        instance_list = []
+    try:
+        with open(filename, "r") as file:
+            json_data = file.read()
+            if json_data:
+                dict_list = cls.from_json_string(json_data)
+                for item in dict_list:
+                    instance = cls.create(**item)
+                    instance_list.append(instance)
+    except FileNotFoundError:
+        return instance_list
+    return instance_list
