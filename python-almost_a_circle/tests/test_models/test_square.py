@@ -2,6 +2,7 @@
 """ unittest """
 import unittest
 import os
+
 from models.square import Square
 from models.base import Base
 
@@ -59,6 +60,9 @@ class Test_Square(unittest.TestCase):
         r.update(89, 3)
         self.assertEqual(r.width, 3)
 
+        r = Square(14, 12, 15, 25)
+        self.assertEqual(str(r), "[Square] (25) 12/15 - 14")
+
         r = Square(2, 6, 8, 22)
         self.assertEqual(r.to_dictionary(), {'id': 22, 'size': 2,
                                              'x': 6, 'y': 8})
@@ -81,7 +85,7 @@ class Test_Square(unittest.TestCase):
         Square.save_to_file([r])
         with open("Square.json", "r") as f:
             content = f.read()
-        expected_output = '[{"id": 19, "size": 2, "x": 0, "y": 0}]'
+        expected_output = '[{"id": 32, "size": 2, "x": 0, "y": 0}]'
         self.assertEqual(content, expected_output)
         os.remove("Square.json")
 
@@ -99,13 +103,11 @@ class Test_Square(unittest.TestCase):
         self.assertEqual(content, expected_output)
         os.remove("Square.json")
 
-
-
-        r1 = Square(10)
+        r1 = Square(50)
         Square.save_to_file([r1])
         squares = Square.load_from_file()
         self.assertIsInstance(squares[0], Square)
-        self.assertEqual(squares[0].width, 10)
+        self.assertEqual(squares[0].width, 50)
         os.remove("Square.json")
 
         r = Square.load_from_file()

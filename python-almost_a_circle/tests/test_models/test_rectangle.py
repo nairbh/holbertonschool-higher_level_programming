@@ -2,6 +2,7 @@
 """ unittest """
 import unittest
 import os
+
 from models.rectangle import Rectangle
 from models.base import Base
 
@@ -70,8 +71,8 @@ class Test_Rectangle(unittest.TestCase):
         r = Rectangle(14, 16, 12, 15, 25)
         self.assertEqual(str(r), "[Rectangle] (25) 12/15 - 14/16")
 
-        r = Rectangle(2, 4, 6, 8, 22)
-        self.assertEqual(r.to_dictionary(), {'id': 22, 'width': 2, 'height': 4,
+        r = Rectangle(2, 4, 6, 8, 42)
+        self.assertEqual(r.to_dictionary(), {'id': 42, 'width': 2, 'height': 4,
                                              'x': 6, 'y': 8})
 
         r = Rectangle.create(**{'id': 5, 'width': 1, 'height': 3,
@@ -92,7 +93,7 @@ class Test_Rectangle(unittest.TestCase):
         Rectangle.save_to_file([r])
         with open("Rectangle.json", "r") as f:
             content = f.read()
-        expected_output = '[{"id": 9, "width": 2, "height": 4, "x": 0, "y": 0}]'
+        expected_output = '[{"id": 16, "width": 2, "height": 4, "x": 0, "y": 0}]'
         self.assertEqual(content, expected_output)
         os.remove("Rectangle.json")
 
@@ -109,8 +110,6 @@ class Test_Rectangle(unittest.TestCase):
         expected_output = '[]'
         self.assertEqual(content, expected_output)
         os.remove("Rectangle.json")
-       
-        
 
         r1 = Rectangle(10, 20)
         Rectangle.save_to_file([r1])
