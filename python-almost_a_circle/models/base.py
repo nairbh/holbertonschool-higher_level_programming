@@ -74,7 +74,7 @@ class Base:
                         instance = cls.create(**i)
                         _list.append(instance)
 
-        except FileNotFoundError:
+        except FileNotFoundError as e:
             return _list
 
         return _list
