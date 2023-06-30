@@ -82,8 +82,10 @@ class Rectangle(Base):
             print(" " * self.__x + "#" * self.__width)
 
     def __str__(self):
-        """ Return a string representation of the rectangle """
-        return "[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.__x, self.__y, self.__width, self.__height)
+        """ Return a string """
+        return "[Rectangle] ({}) {}/{} - {}/{}".format(self.id,
+                                                       self.x, self.y,
+                                                       self.width, self.height)
 
     def update(self, *args, **kwargs):
         """ Update the attributes of the rectangle """
@@ -111,4 +113,3 @@ class Rectangle(Base):
             'x': self.__x,
             'y': self.__y
         }
-
