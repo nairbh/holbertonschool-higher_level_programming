@@ -60,7 +60,7 @@ class Base:
     @classmethod
     def load_from_file(cls):
         """load from file"""
-         filename = cls.__name__ + ".json"
+        filename = cls.__name__ + ".json"
         class_name = []
         with open(filename, "r") as read_file:
             file = read_file.read()
