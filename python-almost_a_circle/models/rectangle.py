@@ -77,9 +77,11 @@ class Rectangle(Base):
         return self.height * self.width
 
     def display(self):
-        """ display def """
+        """ display def"""
+        for _ in range(self.y):
+            print()
         for _ in range(self.height):
-            print("#" * self.width)
+            print(self.__x * " " + "#" * self.__width)
 
     def __str__(self):
         """ str def """
@@ -88,28 +90,21 @@ class Rectangle(Base):
             f"{self.x}/{self.y} - {self.width}/{self.height}").strip()
         return message
 
-    def display(self):
-        """ display def"""
-        for _ in range(self.y):
-            print()
-        for _ in range(self.height):
-            print(self.__x * " " + "#" * self.__width)
-
     def update(self, *args, **kwargs):
         """def update attribut"""
+        if args:
+            if len(args) >= 1:
+                self.id = args[0]
+            if len(args) >= 2:
+                self.width = args[1]
+            if len(args) >= 3:
+                self.height = args[2]
+            if len(args) >= 4:
+                self.x = args[3]
+            if len(args) >= 5:
+                self.y = args[4]
         for key, value in kwargs.items():
             setattr(self, key, value)
-
-        if len(args) >= 0:
-            self.id = args[0]
-        if len(args) >= 1:
-            self.width = args[1]
-        if len(args) >= 2:
-            self.height = args[2]
-        if len(args) >= 3:
-            self.x = args[3]
-        if len(args) >= 4:
-            self.y = args[4]
 
     def to_dictionary(self):
         """dictionary"""

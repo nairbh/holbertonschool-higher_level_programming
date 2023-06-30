@@ -19,11 +19,7 @@ class Base:
     @staticmethod
     def to_json_string(list_dictionaries):
         """def list of dict"""
-        if list_dictionaries is None or len(list_dictionaries) == 0:
-            return "[]"
-        else:
-            json_format = json.dumps(list_dictionaries)
-            return json_format
+        self.assertEqual(self.base.to_json_string(None), "[]")
 
     @classmethod
     def save_to_file(cls, list_objs):
