@@ -64,7 +64,7 @@ class Base:
                 if json_data:
                     dict_list = cls.from_json_string(json_data)
                     for item in dict_list:
-                        instance = cls.create(**item)
+                        instance = cls(**item)
                         instance_list.append(instance)
         except FileNotFoundError:
             return instance_list
