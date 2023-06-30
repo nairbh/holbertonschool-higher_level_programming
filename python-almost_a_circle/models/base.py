@@ -1,12 +1,10 @@
 #!/usr/bin/python3
-"""import module"""
-
-
+""" Module that contains class Base """
 import json
 
 
 class Base:
-    """define class"""
+    """ Base class """
     __nb_objects = 0
 
     def __init__(self, id=None):
@@ -18,31 +16,34 @@ class Base:
 
     @staticmethod
     def to_json_string(list_dictionaries):
-        """def list of dict"""
-        self.assertEqual(self.base.to_json_string(None), "[]")
+        """ Convert a list"""
+        if list_dictionaries is None or len(list_dictionaries) == 0:
+            return "[]"
+        else:
+            return json.dumps(list_dictionaries)
 
     @classmethod
     def save_to_file(cls, list_objs):
-        """ save file """
+        """ Save a list of objects to a file in JSON format """
         filename = cls.__name__ + ".json"
-        list_of_obj = []
+        list_of_dict = []
         if list_objs is not None:
             for obj in list_objs:
-                list_of_obj.append(obj.to_dictionary())
+                list_of_dict.append(obj.to_dictionary())
         with open(filename, "w", encoding="UTF-8") as file:
-            file.write(cls.to_json_string(list_of_obj))
+            file.write(cls.to_json_string(list_of_dict))
 
     @staticmethod
     def from_json_string(json_string):
-        """ from json """
-        if json_string is None or json_string == "":
+        """ Convert a JSON """
+        if json_string is None or len(json_string) == 0:
             return []
         else:
             return json.loads(json_string)
 
     @classmethod
     def create(cls, **dictionary):
-        """ create """
+        """ Create a new instance of the class from a dictionary """
         if cls.__name__ == "Rectangle":
             dummy = cls(1, 1)
         elif cls.__name__ == "Square":
@@ -55,7 +56,7 @@ class Base:
 
     @classmethod
     def load_from_file(cls):
-        """load from file"""
+        """ Load a list """
         filename = cls.__name__ + ".json"
         instance_list = []
         try:

@@ -32,12 +32,13 @@ class TestBase(unittest.TestCase):
             json_dic, '{["id": 1, "x": 2, "y": 3, "width": 4, "height": 5]}')
         json_d_1 = Base.to_json_string(None)
         self.assertEqual(json_d_1, "[]")
-        err = ("to_json_string() missing 1 required positional argument: " +
+        err = ("Base.to_json_string() missing 1 required positional argument: " +
                "'list_dictionaries'")
+
         with self.assertRaises(TypeError) as i:
             Base.to_json_string()
         self.assertEqual(err, str(i.exception))
-        err = "to_json_string() takes 1 positional argument but 2 were given"
+        err = "Base.to_json_string() takes 1 positional argument but 2 were given"
         with self.assertRaises(TypeError) as i:
             Base.to_json_string([{1, 2}], [{3, 4}])
         self.assertEqual(err, str(i.exception))
@@ -52,12 +53,12 @@ class TestBase(unittest.TestCase):
             json_str, [{"id": 1, "x": 2, "y": 3, "width": 4, "height": 5}])
         json_s_1 = Base.from_json_string(None)
         self.assertEqual(json_s_1, [])
-        err = ("from_json_string() missing 1 required positional argument: " +
+        err = ("Base.from_json_string() missing 1 required positional argument: " +
                "'json_string'")
         with self.assertRaises(TypeError) as i:
             Base.from_json_string()
         self.assertEqual(err, str(i.exception))
-        err = "from_json_string() takes 1 positional argument but 2 were given"
+        err = "Base.from_json_string() takes 1 positional argument but 2 were given"
         with self.assertRaises(TypeError) as i:
             Base.from_json_string('[1]', '[2]')
         self.assertEqual(err, str(i.exception))
