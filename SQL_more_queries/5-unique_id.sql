@@ -1,2 +1,2 @@
 -- Write a script that creates the table force_name on your MySQL server.
-CREATE TABLE IF NOT EXISTS unique_id(id INT UNIQUE, name VARCHAR(256));
+CREATE TABLE IF NOT EXISTS 'unique_id' ('id' INT UNIQUE, 'name' VARCHAR(256));
