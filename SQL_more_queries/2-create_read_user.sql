@@ -1,8 +1,6 @@
--- Write a script that creates the database hbtn_0d_2 and the user user_0d_2.
-DELIMITER //
-CREATE DATABASE IF NOT EXISTS hbtn_0d_2;
 USE hbtn_0d_2;
 
+DELIMITER //
 CREATE PROCEDURE create_user_if_not_exists()
 BEGIN
     DECLARE user_exists INT DEFAULT 0;
@@ -21,6 +19,3 @@ END //
 DELIMITER ;
 
 CALL create_user_if_not_exists();
-DROP PROCEDURE IF EXISTS create_user_if_not_exists;
-DELIMITER ;
-FLUSH PRIVILEGES;
