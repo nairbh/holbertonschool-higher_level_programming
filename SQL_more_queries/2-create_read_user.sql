@@ -15,7 +15,7 @@ BEGIN
         EXECUTE stmt;
         DEALLOCATE PREPARE stmt;
 
-        GRANT ALL PRIVILEGES ON hbtn_0d_2.* TO user_0d_2 @localhost;
+        GRANT SELECT ON hbtn_0d_2.* TO user_0d_2@localhost;
     END IF;
 END //
 DELIMITER ;
