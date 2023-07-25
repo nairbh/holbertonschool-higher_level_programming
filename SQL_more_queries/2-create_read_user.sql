@@ -1,19 +1,4 @@
 -- Write a script that creates the database hbtn_0d_2 and the user user_0d_2.
-SET @checker_output = NULL;
-
-DELIMITER //
-CREATE FUNCTION send_to_checker(output TEXT)
-RETURNS TEXT
-BEGIN
-    DECLARE checker_response TEXT;
-
-    SELECT 'Congratulations! All tests passed successfully!
-You are ready for your next mission!' INTO checker_response;
-
-    RETURN checker_response;
-END //
-DELIMITER ;
-
 CREATE DATABASE IF NOT EXISTS hbtn_0d_2;
 USE hbtn_0d_2;
 
@@ -25,27 +10,16 @@ BEGIN
     SELECT COUNT(*) INTO user_exists FROM mysql.user WHERE user = 'user_0d_2' AND host = 'localhost';
 
     IF user_exists = 0 THEN
-        SET @create_user_query = CONCAT('CREATE USER ''user_0d_2''@''localhost'' IDENTIFIED BY ''user_0d_2_pwd'';');
+        SET @create_user_query = CONCAT('CREATE USER ''user_0d_2''@''localhost'' IDENTIFIED BY ''user_0d_2_pwd''');
         PREPARE stmt FROM @create_user_query;
         EXECUTE stmt;
         DEALLOCATE PREPARE stmt;
 
         GRANT SELECT ON hbtn_0d_2.* TO 'user_0d_2'@'localhost';
     END IF;
-
-    SET @output = 'Output of your script';
-
-    SET @checker_output = send_to_checker(@output);
 END //
 DELIMITER ;
 
 CALL create_user_if_not_exists();
-
-IF @checker_output IS NOT NULL THEN
-
-    SELECT @checker_output AS Result;
-ELSE
-
-    SELECT 'Congratulations! All tests passed successfully!
-You are ready for your next mission!' AS Result;
-END IF;
+DROP PROCEDURE IF EXISTS create_user_if_not_exists;
+FLUSH PRIVILEGES;
