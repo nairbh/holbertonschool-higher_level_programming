@@ -2,7 +2,7 @@
 CREATE DATABASE IF NOT EXISTS hbtn_0d_2;
 USE hbtn_0d_2;
 
-DELIMITER //
+DELIMITER // 
 CREATE PROCEDURE create_user_if_not_exists()
 BEGIN
     DECLARE user_exists INT DEFAULT 0;
@@ -15,11 +15,10 @@ BEGIN
         EXECUTE stmt;
         DEALLOCATE PREPARE stmt;
 
-        GRANT SELECT ON hbtn_0d_2.* TO user_0d_2@localhost;
+        GRANT SELECT ON hbtn_0d_2.* TO user_0d_2 @localhost;
     END IF;
 END //
-DELIMITER ;
+DELIMITER ; 
 
 CALL create_user_if_not_exists();
 DROP PROCEDURE IF EXISTS create_user_if_not_exists;
-FLUSH PRIVILEGES;
