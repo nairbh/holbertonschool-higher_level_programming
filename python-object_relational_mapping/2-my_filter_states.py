@@ -18,7 +18,7 @@ if __name__ == "__main__":
 
     with conn.cursor() as cur:
         cur.execute("SELECT * FROM states WHERE name = '{}' \
-                         ORDER BY states.id ".format(sys.argv[1]))
+                         ORDER BY states.id ".format(sys.argv[4]))
         for row in cur.fetchall():
                 print(row)
     conn.close()
