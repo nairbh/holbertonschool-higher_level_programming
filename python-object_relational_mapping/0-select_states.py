@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 import sys
 import MySQLdb
-
-# Write a script that lists all states from the database hbtn_0e_0_usa
+""" Write a script that lists all states from the database hbtn_0e_0_usa """
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
