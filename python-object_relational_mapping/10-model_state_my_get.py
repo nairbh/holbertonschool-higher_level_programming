@@ -17,6 +17,6 @@ if __name__ == "__main__":
     session_encap = Session()
 
     state = session_encap.query(State).filter_by(name=state_name).first()
-    print("{}: {}".format(state.id, state_name) if state is not None else "Not found")
+    print("{}".format(state.id) if state is not None else "Not found")
 
     session_encap.close()
