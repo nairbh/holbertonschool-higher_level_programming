@@ -12,7 +12,8 @@ if __name__ == "__main__":
     db = sys.argv[3]
     state_name = sys.argv[4]
 
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(username, password, db))
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.
+                           format(username, password, db))
     Session = sessionmaker(bind=engine)
     session_encap = Session()
 
