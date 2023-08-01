@@ -5,20 +5,21 @@ import MySQLdb
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 4:
-        sys.exit("Usage: file_name, username, password, db")
+    if len(sys.argv) != 5:
+        sys.exit("Usage: file_name, username, password, db, state_name")
+
+    username, password, db_name, state_name = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
 
     conn = MySQLdb.connect(
         host="localhost",
         port=3306,
-        user=sys.argv[1],
-        passwd=sys.argv[2],
-        db=sys.argv[3]
+        user=username,
+        passwd=password,
+        db=db_name
     )
 
     with conn.cursor() as cur:
-        cur.execute("SELECT * FROM states WHERE BINARY name = '{}' \
-                         ORDER BY states.id ".format(sys.argv[4]))
+        cur.execute("SELECT * FROM states WHERE name = %s ORDER BY id", (state_name,))
         for row in cur.fetchall():
             print(row)
     conn.close()
