@@ -7,8 +7,8 @@ from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
 
 username, password, db = sys.argv[1], sys.argv[2], sys.argv[3]
-engine = create_engine('mysql+mysqldb://{}:{}\
-                       @localhost/{}'.format(username, password, db))
+engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'
+                       .format(username, password, db))
 Session = sessionmaker(bind=engine)
 session_encap = Session()
 
