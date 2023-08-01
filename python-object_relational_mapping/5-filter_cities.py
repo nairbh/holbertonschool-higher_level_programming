@@ -6,10 +6,14 @@ import sys
 
 
 if __name__ == "__main__":
-    conn = MySQLdb.connect(host="localhost", port=3306, user=sys.argv[1],
-                           passwd=sys.argv[2], db=sys.argv[3])
+    conn = MySQLdb.connect(
+        host="localhost", port=3306,
+        user=sys.argv[1],
+        passwd=sys.argv[2],
+        db=sys.argv[3]
+        )
     with conn.cursor() as cur:
-        sql_inject = "SELECT cities.id, cities.name, states.name \
+        sql_inject = "SELECT cities.name \
                  FROM cities \
                  INNER JOIN states \
                  ON states.id = cities.state_id \
@@ -18,9 +22,8 @@ if __name__ == "__main__":
 
         cur.execute(sql_inject, (sys.argv[4],))
 
-        cities_in_state = cur.fetchall()
-
-        for city in cities_in_state:
-            print(', '.join([row[1] for row in cities_in_state]))
+        cities_list = [row[0] for row in cur.fetchall()]
+        cities_str = ", ".join(cities_list)
+        print(cities_str)
 
     conn.close()
