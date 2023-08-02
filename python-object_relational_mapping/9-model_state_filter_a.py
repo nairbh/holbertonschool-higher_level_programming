@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""script that lists all State objects database hbtn_0e_6_usa"""
+"""script that prints the State object with the name passed as argument from the database hbtn_0e_6_usa"""
 
 import sys
 from sqlalchemy import create_engine
@@ -7,16 +7,14 @@ from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
 
 if __name__ == "__main__":
-    username, password, db = sys.argv[1], sys.argv[2], sys.argv[3]
+    username, password, db, state_name = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
     engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'
                            .format(username, password, db))
     Session = sessionmaker(bind=engine)
     session_encap = Session()
 
-    states_with_a = session_encap.query(State).filter(
-        State.name.like('%a%')).order_by(State.id).all()
-
-    for state in states_with_a:
-        print("{}: {}".format(state.id, state.name))
+    state = session_encap.query(State).filter_by(name=state_name).first()
+    print("{}: {}".format(state.id)
+          if state is not None else "Not found")
 
     session_encap.close()
