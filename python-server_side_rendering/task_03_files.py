@@ -29,7 +29,7 @@ def read_data(path, src):
     try:
         if src == 'json':
             with open(path, 'r') as file:
-                return json.load(file)
+                return json.load(file)['products']
         elif src == 'csv':
             products = []
             with open(path, 'r') as file:
