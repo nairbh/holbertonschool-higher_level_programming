@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import os
 import json
 import csv
 
@@ -25,26 +26,30 @@ def items():
 def read_data(path, source):
     try:
         if source == 'json':
-            with open(path, 'r') as file:
-                data = json.load(file)
-                print(f"JSON data read: {data}")
-                return data['products'] if isinstance(data, dict) and 'products' in data else []
+            if os.path.exists(path):
+                with open(path, 'r') as file:
+                    data = json.load(file)
+                    print(f"JSON data read: {data}")
+                    return data['products'] if isinstance(data, dict) and 'products' in data else []
+            else:
+                print(f"File {path} not found.")
+                return []
         elif source == 'csv':
-            products = []
-            with open(path, 'r') as file:
-                reader = csv.DictReader(file)
-                for row in reader:
-                    row['price'] = float(row['price'])
-                    products.append(row)
-            print(f"CSV data read: {products}")
-            return products
-    except FileNotFoundError:
-        print(f"File {path} not found.")
-        return []
+            if os.path.exists(path):
+                products = []
+                with open(path, 'r') as file:
+                    reader = csv.DictReader(file)
+                    for row in reader:
+                        row['price'] = float(row['price'])
+                        products.append(row)
+                print(f"CSV data read: {products}")
+                return products
+            else:
+                print(f"File {path} not found.")
+                return []
     except json.JSONDecodeError:
         print("Error decoding JSON")
         return []
-
 
 @app.route('/products')
 def products():
