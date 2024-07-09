@@ -2,12 +2,12 @@ from flask import Flask, render_template, request
 import os
 import json
 import csv
+
 app = Flask(__name__)
 
 @app.route('/')
 def home():
     return render_template('index.html')
-
 
 @app.route('/about')
 def about():
@@ -17,13 +17,11 @@ def about():
 def contact():
     return render_template('contact.html')
 
-
 @app.route('/items')
 def items():
     with open('items.json') as file:
         _list = json.load(file).get("items", [])
     return render_template('items.html', items=_list)
-
 
 def read_data(path, src):
     try:
@@ -40,7 +38,6 @@ def read_data(path, src):
             return products
     except FileNotFoundError:
         return []
-
 
 @app.route('/products')
 def products():
