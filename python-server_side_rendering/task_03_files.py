@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 import os
 import json
 import csv
@@ -56,16 +56,16 @@ def products():
     source = request.args.get('source')
     product_id = request.args.get('id')
     if source not in ['json', 'csv']:
-        return render_template('product_display.html', error="Wrong source")
+        return jsonify({"error": "Wrong source"}), 400
     
     products_list = read_data(f'products.{source}', source)
     
     if product_id:
         products_list = [product for product in products_list if str(product['id']) == product_id]
         if not products_list:
-            return render_template('product_display.html', error="Product not found")
+            return jsonify({"error": "Product not found"}), 404
     
-    return render_template('product_display.html', products=products_list)
+    return jsonify(products_list)
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0', port=5000)
