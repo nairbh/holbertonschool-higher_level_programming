@@ -27,7 +27,9 @@ def read_data(path, src):
     try:
         if src == 'json':
             with open(path, 'r') as file:
-                return json.load(file)['products']
+                data = json.load(file)
+                print(f"JSON data read: {data}")
+                return data['products']
         elif src == 'csv':
             products = []
             with open(path, 'r') as file:
@@ -35,6 +37,7 @@ def read_data(path, src):
                 for row in reader:
                     row['price'] = float(row['price'])
                     products.append(row)
+            print(f"CSV data read: {products}")
             return products
     except FileNotFoundError:
         return []
