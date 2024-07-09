@@ -16,10 +16,10 @@ def generate_invitations(template, attendees):
     
     for idx, attendee in enumerate(attendees, start=1):
         content = template.format(
-            name=attendee.get("name", ""),
-            event_title=attendee.get("event_title", ""),
-            event_date=attendee.get("event_date", ""),
-            event_location=attendee.get("event_location", "")
+            name=attendee.get("name", "N/A"),
+            event_title=attendee.get("event_title", "N/A"),
+            event_date=attendee.get("event_date", "N/A"),
+            event_location=attendee.get("event_location", "N/A")
         )
         with open(f'output_{idx}.txt', 'w') as file:
             file.write(content)
