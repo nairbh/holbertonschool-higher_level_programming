@@ -30,7 +30,7 @@ def read_data(path, source):
         if source == 'json':
             with open(path, 'r') as file:
                 return json.load(file)['products']
-        elif src == 'csv':
+        elif source == 'csv':
             products = []
             with open(path, 'r') as file:
                 reader = csv.DictReader(file)
@@ -44,7 +44,7 @@ def read_data(path, source):
 
 @app.route('/products')
 def products():
-    source  = request.args.get('source')
+    source = request.args.get('source')
     product_id = request.args.get('id')
     if source not in ['json', 'csv']:
         return render_template('product_display.html', error="wrong source")
@@ -57,7 +57,6 @@ def products():
             return render_template('product_display.html', error="Product not found")
     
     return render_template('product_display.html', products=products_list)
-
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0', port=5000)
