@@ -1,17 +1,5 @@
->>> import math
->>> def add_integer(a, b = 98):
-...    """
-...    This function is documented
-...    """
-...    if (not isinstance(a, (int, float))):
-...        raise TypeError("a must be an integer")
-...    elif (not isinstance(b, (int, float))):
-...        raise TypeError("b must be an integer")
-...    if (math.isinf(a) or math.isinf(b)):
-...        raise OverflowError("cannot convert float infinity to integer")
-...    if (math.isnan(a) or math.isnan(b)):
-...        raise ValueError("cannot convert float NaN to integer")
-...    return int(a) + int(b)
+>>> add_integer = __import__('0-add_integer').add_integer
+
 >>> add_integer(1, 2)
 3
 >>> add_integer(1.1, 2)
